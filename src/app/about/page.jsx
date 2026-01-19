@@ -107,16 +107,6 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Scroll Indicator */}
-              <div className="mt-16 md:mt-20">
-                <div className="animate-bounce flex flex-col items-center justify-center">
-                  <span className="text-white/70 text-sm mb-2">
-                    Scroll to explore
-                  </span>
-                  <FiChevronDown className="text-white text-2xl" />
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -377,14 +367,6 @@ export default function AboutPage() {
                 <span className="font-medium text-gray-900">TikTok</span>
                 <p className="text-sm text-gray-500 mt-1">@tut</p>
               </Link>
-
-              <div className="flex-1 min-w-[140px] p-4 rounded-xl border border-gray-200 text-center bg-gradient-to-r from-[#6BB7C7]/5 to-transparent">
-                <div className="w-12 h-12 rounded-full bg-[#6BB7C7] flex items-center justify-center mx-auto mb-3">
-                  <span className="text-white text-xl font-bold">TUT</span>
-                </div>
-                <span className="font-medium text-gray-900">Newsletter</span>
-                <p className="text-sm text-gray-500 mt-1">Coming Soon</p>
-              </div>
             </div>
           </div>
         </div>
