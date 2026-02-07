@@ -1,3 +1,6 @@
+// Dynamic API route to get the count of products in the database
+export const dynamic = "force-dynamic";
+
 // NextJs
 import { NextResponse } from "next/server";
 
