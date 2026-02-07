@@ -1,22 +1,10 @@
-// Dynamic API route
 export const dynamic = "force-dynamic";
 
-// NextJs
 import { NextResponse } from "next/server";
-
-// Prisma
 import prisma from "@/lib/db";
-
-// Utils
 import { verifyToken } from "@/utils/verifyToken";
 import { paginationItemPerPage } from "@/utils/constants";
 
-/*
- * @method GET
- * @route ~/api/orders?page=value
- * @desc Get Orders
- * @access protected (admin | owner)
- */
 export async function GET(req) {
   try {
     const page = Number(req.nextUrl.searchParams.get("page") || 1);
@@ -27,77 +15,46 @@ export async function GET(req) {
       orderBy: { createdAt: "desc" },
       include: {
         user: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
+          select: { id: true, name: true, email: true },
         },
         items: {
-          include: {
-            product: true,
-          },
+          include: { product: true },
         },
       },
     });
 
     return NextResponse.json(orders, { status: 200 });
   } catch (err) {
-    console.log("Server Error", err);
-    return NextResponse.json(
-      { message: "خطأ في الخادم الداخلي" },
-      { status: 500 },
-    );
+    console.error("Server Error GET /api/orders:", err);
+    return NextResponse.json({ message: "خطأ في الخادم الداخلي" }, { status: 500 });
   }
 }
 
-/*
- * @method POST
- * @route ~/api/orders
- * @desc Create Order
- * @access protected (user)
- */
 export async function POST(req) {
   try {
     const body = await req.json();
     const user = verifyToken();
 
     if (!user) {
-      return NextResponse.json(
-        { message: "يرجى تسجيل الدخول أولاً" },
-        { status: 401 },
-      );
+      return NextResponse.json({ message: "يرجى تسجيل الدخول أولاً" }, { status: 401 });
     }
 
     if (!body.cartItems || body.cartItems.length === 0) {
-      return NextResponse.json(
-        { message: "عربة التسوق فارغة" },
-        { status: 400 },
-      );
-
+      return NextResponse.json({ message: "عربة التسوق فارغة" }, { status: 400 });
     }
 
-    // Get products from DB (trusted prices)
     const productIds = body.cartItems.map((item) => Number(item.id));
     const products = await prisma.product.findMany({
       where: { id: { in: productIds } },
     });
 
-
     const orderItems = body.cartItems.map((item) => {
       const productId = Number(item.id);
       const product = products.find((p) => p.id === productId);
-      console.log("Processing item:", item.id, "Converted ID:", productId, "Found Product:", product);
 
-      if (!product) {
-        throw new Error("المنتج غير موجود");
-      }
+      if (!product) throw new Error("المنتج غير موجود");
 
-      return {
-        productId: product.id,
-        quantity: item.qty,
-        price: product.price,
-      };
+      return { productId: product.id, quantity: item.qty, price: product.price };
     });
 
     const newOrder = await prisma.order.create({
@@ -110,18 +67,13 @@ export async function POST(req) {
         customerPhone: body.userInfo.phone,
         customerEmail: body.userInfo.email,
         customerAddress: body.userInfo.address,
-        items: {
-          create: orderItems,
-        },
+        items: { create: orderItems },
       },
     });
 
     return NextResponse.json(newOrder, { status: 201 });
   } catch (err) {
-    console.log("Server Error", err);
-    return NextResponse.json(
-      { message: "خطأ في الخادم الداخلي" },
-      { status: 500 },
-    );
+    console.error("Server Error POST /api/orders:", err);
+    return NextResponse.json({ message: "خطأ في الخادم الداخلي" }, { status: 500 });
   }
 }
