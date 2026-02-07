@@ -3,16 +3,16 @@ import Product from "@/comps/mini-comps/product";
 import ProductsPagination from "@/comps/mini-comps/productsPagination";
 import SearchProductInput from "./searchProductInput";
 
-// API calls
-import { getProducts, getProductsCount } from "@/apiCalls/productsApiCalls";
+// Data Service
+import { getAllProducts, getProductsCountDB } from "@/lib/data-service";
 
 // Utils
 import { paginationItemPerPage } from "@/utils/constants";
 
 export default async function Products({ searchParams }) {
   const { page } = await searchParams;
-  const products = await getProducts(page);
-  const productsCount = await getProductsCount();
+  const products = await getAllProducts(page || 1);
+  const productsCount = await getProductsCountDB();
   const pages = Math.ceil(productsCount / paginationItemPerPage);
 
   return (

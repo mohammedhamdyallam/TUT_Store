@@ -1,15 +1,15 @@
 // Comps
 import Product from "@/comps/mini-comps/product";
 
-// API calls
-import { getSearchProducts } from "@/apiCalls/productsApiCalls";
+// Data Service
+import { getSearchProductsDB } from "@/lib/data-service";
 
 // Icons
 import { FiSearch } from "react-icons/fi";
 
 export default async function SearchProductsPage({ searchParams }) {
   const { searchKey } = await searchParams;
-  const products = await getSearchProducts(searchKey);
+  const products = await getSearchProductsDB(searchKey);
 
   return (
     <div>

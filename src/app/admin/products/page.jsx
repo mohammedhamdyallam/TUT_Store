@@ -5,8 +5,8 @@ import { cookies } from "next/headers";
 // Comps
 import ProductsClient from "./productsClient";
 
-// API calls
-import { getProducts, getProductsCount } from "@/apiCalls/productsApiCalls";
+// Data Service
+import { getAllProducts, getProductsCountDB } from "@/lib/data-service";
 
 // Utils
 import { allowedRoles } from "@/utils/constants";
@@ -15,8 +15,8 @@ import { verifyTokenClient } from "@/utils/verifyToken";
 
 export default async function AdminProducts({ searchParams }) {
   const { page } = await searchParams;
-  const products = await getProducts(page);
-  const productsCount = await getProductsCount();
+  const products = await getAllProducts(page || 1);
+  const productsCount = await getProductsCountDB();
   const pages = Math.ceil(productsCount / paginationItemPerPage);
 
   const cookieStore = await cookies();

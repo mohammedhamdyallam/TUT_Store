@@ -3,25 +3,11 @@ import Product from "@/comps/mini-comps/product";
 import Image from "next/image";
 import Link from "next/link";
 
-// Get Products
-async function getProducts() {
-  const res = await fetch("http://localhost:3000/api/products", {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    console.error("API Error:", res.status);
-    return null;
-  }
-
-  const text = await res.text();
-  if (!text) return null;
-
-  return JSON.parse(text);
-}
+// Data Service
+import { getAllProducts } from "@/lib/data-service";
 
 export default async function Home() {
-  const products = await getProducts();
+  const products = await getAllProducts(1);
 
   return (
     <main className="min-h-screen bg-[#F9FAFB] text-gray-800">
