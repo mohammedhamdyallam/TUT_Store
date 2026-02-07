@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  role       String   @default("user")
+  isVerified Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  orders Order[]
+}
+
+model Product {
+  id            Int         @id @default(autoincrement())
+  title         String      @db.VarChar(200)
+  description   String?
+  originalPrice Int
+  price         Int
+  discount      Int
+  category      String
+  images        String[]    @default([])
+  stock         Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  orderItems    OrderItem[]
+}
+
+model Order {
+  id     Int  @id @default(autoincrement())
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  // Order Status
+  status        String @default("pending") // pending | paid | shipped | cancelled
+  totalPrice    Int
+  paymentMethod String // COD | CARD | WALLET
+
+  // Customer Info
+  customerName    String
+  customerPhone   String
+  customerEmail   String?
+  customerAddress String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+}
+
+
+
+model OrderItem {
+  id Int @id @default(autoincrement())
+
+  orderId   Int
+  productId Int
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  quantity Int
+  price    Int // سعر المنتج وقت الطلب
+
+  createdAt DateTime @default(now())
+}

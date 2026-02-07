@@ -33,10 +33,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Brand */}
         <div>
-          <h2 className="text-2xl font-bold text-sky-700">TUT</h2>
+          <h2 className="text-2xl font-bold text-sky-700">توت</h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-500">
-            A modern e-commerce platform delivering quality products with a
-            smooth shopping experience.
+            منصة تجارة إلكترونية حديثة تقدم منتجات عالية الجودة مع تجربة تسوق
+            سلسة.
           </p>
 
           {/* Social Media */}
@@ -59,26 +59,26 @@ export default function Footer() {
 
         {/* Pages */}
         <div>
-          <h3 className="text-sky-700 font-semibold mb-4">Pages</h3>
+          <h3 className="text-sky-700 font-semibold mb-4">الصفحات</h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="/" className="hover:text-sky-600">
-                Home
+                الرئيسية
               </Link>
             </li>
             <li>
               <Link href="/products" className="hover:text-sky-600">
-                Products
+                المنتجات
               </Link>
             </li>
             <li>
               <Link href="/about" className="hover:text-sky-600">
-                About
+                من نحن
               </Link>
             </li>
             <li>
               <Link href="/contact" className="hover:text-sky-600">
-                Contact
+                تواصل معنا
               </Link>
             </li>
           </ul>
@@ -86,21 +86,21 @@ export default function Footer() {
 
         {/* Support */}
         <div>
-          <h3 className="text-sky-700 font-semibold mb-4">Support</h3>
+          <h3 className="text-sky-700 font-semibold mb-4">الدعم</h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="/privacy" className="hover:text-sky-600">
-                Privacy Policy
+                سياسة الخصوصية
               </Link>
             </li>
             <li>
               <Link href="/terms" className="hover:text-sky-600">
-                Terms & Conditions
+                الشروط والأحكام
               </Link>
             </li>
             <li>
               <Link href="/help" className="hover:text-sky-600">
-                Help Center
+                مركز المساعدة
               </Link>
             </li>
           </ul>
@@ -108,17 +108,17 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h3 className="text-sky-700 font-semibold mb-4">Contact</h3>
+          <h3 className="text-sky-700 font-semibold mb-4">تواصل معنا</h3>
           <ul className="space-y-2 text-sm text-slate-500">
             <li>support@tut.com</li>
             <li>+20 111 000 0000</li>
-            <li>Egypt</li>
+            <li>مصر</li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-sky-100 text-center py-4 text-xs text-slate-400">
-        © {new Date().getFullYear()} TUT. All rights reserved.
+        © {new Date().getFullYear()} توت. جميع الحقوق محفوظة.
       </div>
     </footer>
   );

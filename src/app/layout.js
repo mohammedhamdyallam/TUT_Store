@@ -1,40 +1,29 @@
-import { Geist, Geist_Mono } from "next/font/google";
+// CSS
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// Fonts
+import { Cairo } from "next/font/google";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const cairo = Cairo({
+  subsets: ["arabic"],
+  variable: "--font-cairo",
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 // Meta Data
 export const metadata = {
   title: "TUT",
-  description: "TUT Store",
+  description: "امتلكي الاناقة",
 };
 
-// Providers
-import { Providers } from "./providers";
+// Contexts
+import { CartProvider } from "@/contexts/cartContext";
 
-// Comps
-import Header from "@/comps/app-comps/header";
-import Footer from "@/comps/app-comps/footer";
-
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+    <html lang="ar" dir="rtl">
+      <body className={`${cairo.variable} font-sans antialiased`}>
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );
