@@ -1,8 +1,8 @@
-// API Calls
-import { getOrders } from "@/apiCalls/ordersApiCall";
+// Data Service
+import { getAllOrders } from "@/lib/data-service";
 
 export default async function AdminOrders() {
-  const orders = await getOrders(1);
+  const orders = await getAllOrders(1);
 
   if (!orders) {
     return (
@@ -29,7 +29,7 @@ export default async function AdminOrders() {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">إدارة الطلبات</h1>
             <p className="text-gray-600">عرض وإدارة جميع طلبات العملاء</p>
           </div>
-          
+
           <div className="flex items-center gap-3">
             <div className="px-4 py-2 bg-white rounded-xl shadow-sm border border-gray-100">
               <p className="text-sm text-gray-500">إجمالي الطلبات</p>
@@ -37,7 +37,7 @@ export default async function AdminOrders() {
                 {orders.length}
               </p>
             </div>
-            
+
             <div className="px-4 py-2 bg-white rounded-xl shadow-sm border border-gray-100">
               <p className="text-sm text-gray-500">طلبات اليوم</p>
               <p className="text-lg font-bold" style={{ color: "#6BB7C7" }}>
@@ -68,7 +68,7 @@ export default async function AdminOrders() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-2xl p-5 shadow-lg border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
@@ -86,7 +86,7 @@ export default async function AdminOrders() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-2xl p-5 shadow-lg border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
@@ -102,7 +102,7 @@ export default async function AdminOrders() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-2xl p-5 shadow-lg border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
@@ -126,7 +126,7 @@ export default async function AdminOrders() {
         <div className="p-6 border-b border-gray-100">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <h2 className="text-xl font-bold text-gray-900">جميع الطلبات</h2>
-            
+
             <div className="flex items-center gap-3">
               <select className="px-4 py-2 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2" style={{ focusRingColor: "#6BB7C7" }}>
                 <option>جميع الحالات</option>
@@ -135,7 +135,7 @@ export default async function AdminOrders() {
                 <option>مشحون</option>
                 <option>ملغي</option>
               </select>
-              
+
               <div className="relative">
                 <input
                   type="text"
@@ -204,7 +204,7 @@ export default async function AdminOrders() {
                   </td>
 
                   <td className="px-6 py-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm" 
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm"
                       style={{ backgroundColor: "#6BB7C7", color: "white" }}>
                       {order.paymentMethod === "cash"
                         ? "💵 كاش"
@@ -235,8 +235,8 @@ export default async function AdminOrders() {
                       <div className={`w-2 h-2 rounded-full
                         ${order.status === "pending" ? "bg-yellow-500"
                           : order.status === "paid" ? "bg-blue-500"
-                          : order.status === "shipped" ? "bg-green-500"
-                          : "bg-red-500"
+                            : order.status === "shipped" ? "bg-green-500"
+                              : "bg-red-500"
                         }`}></div>
                       {order.status === "pending"
                         ? "قيد الانتظار"
@@ -266,7 +266,7 @@ export default async function AdminOrders() {
 
                   <td className="px-6 py-4">
                     <details className="group">
-                      <summary className="flex items-center gap-2 cursor-pointer text-sm font-medium" 
+                      <summary className="flex items-center gap-2 cursor-pointer text-sm font-medium"
                         style={{ color: "#6BB7C7" }}>
                         <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center group-open:rotate-180 transition-transform">
                           ▼
@@ -280,7 +280,7 @@ export default async function AdminOrders() {
                               <div className="font-medium text-gray-900">{item.product.title}</div>
                               <div className="text-sm text-gray-500 mt-1">السعر: {item.price} ج.م</div>
                             </div>
-                            <div className="px-3 py-1 rounded-full text-sm font-medium" 
+                            <div className="px-3 py-1 rounded-full text-sm font-medium"
                               style={{ backgroundColor: "#6BB7C7", color: "white" }}>
                               × {item.quantity}
                             </div>
@@ -307,7 +307,7 @@ export default async function AdminOrders() {
             <div className="text-sm text-gray-600">
               عرض <span className="font-medium">{orders.length}</span> من <span className="font-medium">{orders.length}</span> طلب
             </div>
-            
+
             <div className="flex items-center gap-2">
               <button className="px-4 py-2 border border-gray-300 rounded-xl text-sm hover:bg-gray-50 transition-colors">
                 السابق
@@ -327,7 +327,7 @@ export default async function AdminOrders() {
       {/* Empty State (if needed) */}
       {orders.length === 0 && (
         <div className="text-center py-16 bg-white rounded-2xl shadow-lg border border-gray-100">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" 
+          <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
             style={{ backgroundColor: "#6BB7C7" }}>
             <div className="text-white text-3xl">📦</div>
           </div>
