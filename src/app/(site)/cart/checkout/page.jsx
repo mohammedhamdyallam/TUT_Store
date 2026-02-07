@@ -40,7 +40,7 @@ export default function CheckoutPage() {
 
     if (res.ok) {
       clearCart();
-      router.push("/order-success");
+      router.push("/cart/order-success");
     }
 
     setIsLoading(false);
