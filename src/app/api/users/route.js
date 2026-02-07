@@ -1,3 +1,5 @@
+// Dynamic API route
+export const dynamic = "force-dynamic";
 
 // NextJs
 import { NextResponse } from "next/server";
