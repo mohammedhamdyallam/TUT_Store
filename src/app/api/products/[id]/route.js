@@ -37,7 +37,7 @@ export async function PUT(req, { params }) {
     // Data
     const body = await req.json();
     const { id } = await params;
-    const user = verifyToken(req);
+    const user = verifyToken();
 
     // check user is admin
     if (user === null || user.role === "user") {
@@ -82,7 +82,7 @@ export async function DELETE(req, { params }) {
   try {
     // Data
     const { id } = await params;
-    const user = verifyToken(req);
+    const user = verifyToken();
 
     // check user is admin
     if (user === null || user.role === "user") {

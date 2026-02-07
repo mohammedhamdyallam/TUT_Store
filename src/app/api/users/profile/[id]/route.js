@@ -42,7 +42,7 @@ export async function GET(req, { params }) {
     }
 
     // Get user payload
-    const userPayload = verifyToken(req);
+    const userPayload = verifyToken();
 
     // Check user payload
     if (userPayload === null || userPayload.id !== user.id) {
@@ -95,7 +95,7 @@ export async function PUT(req, { params }) {
     }
 
     // Get user payload
-    const userPayload = verifyToken(req);
+    const userPayload = verifyToken();
 
     // Check user payload
     if (userPayload === null || userPayload.id !== user.id) {
@@ -162,7 +162,7 @@ export async function DELETE(req, { params }) {
   try {
     // Data
     const { id } = await params;
-    const userPayload = verifyToken(req);
+    const userPayload = verifyToken();
 
     // Get user
     const user = await prisma.user.findUnique({

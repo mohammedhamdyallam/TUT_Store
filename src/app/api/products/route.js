@@ -43,7 +43,7 @@ export async function GET(req) {
  */
 export async function POST(req) {
   try {
-    const user = verifyToken(req);
+    const user = verifyToken();
 
     if (!user || user.role !== "admin") {
       return NextResponse.json(

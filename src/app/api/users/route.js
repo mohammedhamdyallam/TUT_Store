@@ -17,7 +17,7 @@ import { verifyToken } from "@/utils/verifyToken";
 export async function GET(req) {
   try {
     // Data
-    const userPayload = verifyToken(req);
+    const userPayload = verifyToken();
     const page = req.nextUrl.searchParams.get("page") || "1";
 
     // Check user payload
