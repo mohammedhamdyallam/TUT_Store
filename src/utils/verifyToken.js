@@ -1,15 +1,20 @@
+// Next.js
+import { cookies } from "next/headers";
+
 // JWT
 import jwt from "jsonwebtoken";
 
-// Verify token for api
-export function verifyToken(req) {
+
+// Verify token for API (App Router safe)
+export function verifyToken() {
   try {
-    const token = req.cookies.get("token")?.value;
+    const token = cookies().get("token")?.value;
+
     if (!token) {
       return null;
     }
-    const userPayload = jwt.verify(token, process.env.JWT_SECRET);
 
+    const userPayload = jwt.verify(token, process.env.JWT_SECRET);
     return userPayload;
   } catch {
     return null;
@@ -23,7 +28,7 @@ export function verifyTokenClient(token) {
     const userPayload = jwt.verify(token, process.env.JWT_SECRET);
 
     // Chech user payload
-    if(!userPayload) null;
+    if(!userPayload) return null;
 
     return userPayload;
   } catch {

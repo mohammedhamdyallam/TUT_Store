@@ -57,7 +57,7 @@ export async function GET(req) {
 export async function POST(req) {
   try {
     const body = await req.json();
-    const user = verifyToken(req);
+    const user = verifyToken();
 
     if (!user) {
       return NextResponse.json(
