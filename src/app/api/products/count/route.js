@@ -1,4 +1,4 @@
-// Dynamic API route to get the count of products in the database
+// Dynamic API route
 export const dynamic = "force-dynamic";
 
 // NextJs
