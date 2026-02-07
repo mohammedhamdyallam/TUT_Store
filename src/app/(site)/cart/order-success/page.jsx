@@ -8,7 +8,7 @@ export default function OrderSuccess() {
         <FiCheckCircle className="mx-auto text-green-500" size={80} />
 
         <h1 className="mt-4 text-2xl font-bold text-gray-800">
-          تم تأكيد طلبك بنجاح 🎉
+          تم تأكيد طلبك بنجاح
         </h1>
 
         <p className="mt-2 text-gray-600 text-sm leading-relaxed">
