@@ -35,10 +35,10 @@ export async function getAllProducts(page) {
     return products;
 }
 
-export async function getProductsCountDB() {
-    const productsCount = await prisma.product.count();
-    return productsCount;
-}
+// export async function getProductsCountDB() {
+//     const productsCount = await prisma.product.count();
+//     return productsCount;
+// }
 
 export async function getSearchProductsDB(searchKey) {
     if (searchKey) {
