@@ -2,6 +2,9 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
+// Prisma
+import prisma from "@/lib/db";
+
 // Comps
 import ProductsClient from "./productsClient";
 
@@ -16,7 +19,7 @@ import { verifyTokenClient } from "@/utils/verifyToken";
 export default async function AdminProducts({ searchParams }) {
   const { page } = await searchParams;
   const products = await getAllProducts(page || 1);
-  const productsCount = await getProductsCountDB();
+  const productsCount = await prisma.product.count();
   const pages = Math.ceil(productsCount / paginationItemPerPage);
 
   const cookieStore = await cookies();

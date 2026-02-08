@@ -3,8 +3,11 @@ import Product from "@/comps/mini-comps/product";
 import ProductsPagination from "@/comps/mini-comps/productsPagination";
 import SearchProductInput from "./searchProductInput";
 
+// Prisma
+import prisma from "@/lib/db";
+
 // Data Service
-import { getAllProducts, getProductsCountDB } from "@/lib/data-service";
+import { getAllProducts } from "@/lib/data-service";
 
 // Utils
 import { paginationItemPerPage } from "@/utils/constants";
@@ -12,7 +15,7 @@ import { paginationItemPerPage } from "@/utils/constants";
 export default async function Products({ searchParams }) {
   const { page } = await searchParams;
   const products = await getAllProducts(page || 1);
-  const productsCount = await getProductsCountDB();
+  const productsCount = await prisma.product.count();
   const pages = Math.ceil(productsCount / paginationItemPerPage);
 
   return (

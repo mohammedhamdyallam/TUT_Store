@@ -7,7 +7,7 @@ export default async function AdminUsers({ searchParams }) {
 
   if (!users) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-white p-4">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-gray-50 to-white p-4">
         <div className="text-center">
           <div className="inline-block p-4 rounded-full bg-red-50 mb-4">
             <div className="w-12 h-12 rounded-full flex items-center justify-center bg-red-100 text-red-600 text-xl font-bold">
@@ -22,7 +22,7 @@ export default async function AdminUsers({ searchParams }) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-6">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100/50 p-4 md:p-6">
       {/* Header Section */}
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
@@ -176,10 +176,10 @@ export default async function AdminUsers({ searchParams }) {
                     <div className="flex items-center gap-3">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold
                         ${user.role === "admin" 
-                          ? "bg-gradient-to-r from-[#6BB7C7] to-[#4A9AA9]"
+                          ? "bg-linear-to-r from-[#6BB7C7] to-[#4A9AA9]"
                           : user.role === "editor"
-                            ? "bg-gradient-to-r from-blue-500 to-blue-600"
-                            : "bg-gradient-to-r from-gray-500 to-gray-600"
+                            ? "bg-linear-to-r from-blue-500 to-blue-600"
+                            : "bg-linear-to-r from-gray-500 to-gray-600"
                         }`}>
                         {user.name.charAt(0).toUpperCase()}
                       </div>
@@ -208,10 +208,10 @@ export default async function AdminUsers({ searchParams }) {
                   <td className="px-6 py-4">
                     <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium
                       ${user.role === "admin"
-                        ? "bg-gradient-to-r from-[#6BB7C7]/10 to-[#4A9AA9]/10 text-[#2A7FAF] border border-[#6BB7C7]/20"
+                        ? "bg-linear-to-r from-[#6BB7C7]/10 to-[#4A9AA9]/10 text-[#2A7FAF] border border-[#6BB7C7]/20"
                         : user.role === "editor"
-                          ? "bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 border border-blue-200"
-                          : "bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 border border-gray-200"
+                          ? "bg-linear-to-r from-blue-50 to-blue-100 text-blue-700 border border-blue-200"
+                          : "bg-linear-to-r from-gray-50 to-gray-100 text-gray-700 border border-gray-200"
                       }`}>
                       <div className={`w-2 h-2 rounded-full
                         ${user.role === "admin" ? "bg-[#6BB7C7]"
@@ -303,10 +303,10 @@ export default async function AdminUsers({ searchParams }) {
               <div className="flex items-center gap-3">
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold
                   ${user.role === "admin" 
-                    ? "bg-gradient-to-r from-[#6BB7C7] to-[#4A9AA9]"
+                    ? "bg-linear-to-r from-[#6BB7C7] to-[#4A9AA9]"
                     : user.role === "editor"
-                      ? "bg-gradient-to-r from-blue-500 to-blue-600"
-                      : "bg-gradient-to-r from-gray-500 to-gray-600"
+                      ? "bg-linear-to-r from-blue-500 to-blue-600"
+                      : "bg-linear-to-r from-gray-500 to-gray-600"
                   }`}>
                   {user.name.charAt(0).toUpperCase()}
                 </div>
@@ -332,10 +332,10 @@ export default async function AdminUsers({ searchParams }) {
               <div className="flex items-center gap-2">
                 <div className={`px-3 py-1.5 rounded-lg text-sm font-medium flex-1 text-center
                   ${user.role === "admin"
-                    ? "bg-gradient-to-r from-[#6BB7C7]/10 to-[#4A9AA9]/10 text-[#2A7FAF]"
+                    ? "bg-linear-to-r from-[#6BB7C7]/10 to-[#4A9AA9]/10 text-[#2A7FAF]"
                     : user.role === "editor"
-                      ? "bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700"
-                      : "bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700"
+                      ? "bg-linear-to-r from-blue-50 to-blue-100 text-blue-700"
+                      : "bg-linear-to-r from-gray-50 to-gray-100 text-gray-700"
                   }`}>
                   {user.role === "admin" ? "مسؤول"
                     : user.role === "editor" ? "محرر"
