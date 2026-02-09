@@ -1,6 +1,6 @@
 // NextJs
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 // Icons
 import { FiSave } from "react-icons/fi";
@@ -45,7 +45,7 @@ export default async function ProductInfo({ params }) {
   const product = await getProduct(id);
 
   if(!product) {
-    notFound();
+    redirect("/not-found");
   }
 
   return (
