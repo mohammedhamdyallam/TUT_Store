@@ -1,5 +1,6 @@
 // NextJs
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 // Icons
 import { FiSave } from "react-icons/fi";
@@ -42,6 +43,10 @@ export async function generateMetadata({ params }) {
 export default async function ProductInfo({ params }) {
   const { id } = await params;
   const product = await getProduct(id);
+
+  if(!product) {
+    notFound();
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
